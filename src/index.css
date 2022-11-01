@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header-li {
+    @apply cursor-pointer hover:text-yellow-300 transform motion-safe:hover:scale-110;
+  }
+
+  .current {
+    @apply text-yellow-400;
+  }
+  .sider-left {
+    @apply shadow-md bg-white fixed h-[80%] w-[240px]  rounded-lg overflow-hidden justify-items-center dark:bg-gray-800;
+  }
+  .header-switch {
+    @apply z-10 dark:bg-gray-800 rounded-b-lg bg-blue-500 fixed shadow-md h-[60px] flex w-full justify-between items-center px-5;
+  }
+}
