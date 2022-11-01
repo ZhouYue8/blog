@@ -8,10 +8,7 @@
 <template>
   <header class="header-switch">
     <div class="text-white text-3xl flex-1">Wei</div>
-    <ul class="text-zinc-200 flex flex-1 gap-3 justify-center">
-      <li :class="`header-li ${current}`">首页</li>
-      <li class="header-li">还在想....</li>
-    </ul>
+    <ul class="text-zinc-200 flex flex-1 gap-3 justify-center"></ul>
     <div
       class="icons flex flex-1 gap-x-4 cursor-pointer justify-end"
       @click="switchDark"
@@ -22,10 +19,25 @@
         :icon="faMoon"
       />
       <FontAwesomeIcon v-else class="h-6 dark:text-yellow-300" :icon="faSun" />
-      <FontAwesomeIcon
-        :class="`h-6 ${store.darkMode ? 'text-white' : ' text-blue-300'}`"
-        :icon="faGithub"
-      />
+      <el-popover placement="bottom" trigger="hover">
+        <template #reference>
+          <FontAwesomeIcon
+            :class="`h-6 ${store.darkMode ? 'text-white' : ' text-blue-300'} `"
+            :icon="faGithub"
+          />
+        </template>
+        <template #default>
+          <div class="flex items-center space-x-4">
+            <FontAwesomeIcon class="h-6" :icon="faGithub" />
+            <a
+              href="https://github.com/ZhouYue8/blog"
+              class="hover:text-slate-500"
+              target="_blank"
+              >源码</a
+            >
+          </div>
+        </template>
+      </el-popover>
     </div>
   </header>
 </template>
@@ -53,6 +65,8 @@ const switchDark = () => {
 <style>
 .el-popper {
   margin-top: 14px !important;
-  height: 20px !important;
+}
+.header-switch {
+  background: url("../assets/waves.png");
 }
 </style>

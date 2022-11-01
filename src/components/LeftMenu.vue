@@ -11,7 +11,8 @@
     :text-color="store.darkMode ? 'black' : 'white'"
     :background-color="store.darkMode ? 'white' : 'rgb(31 41 50)'"
     :router="true"
-    default-active="/layout"
+    :default-active="index"
+    @select="changeMenu"
   >
     <el-menu-item index="/layout" default>
       <template #title>
@@ -50,8 +51,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import useStore from "../store";
 import { useRouter } from "vue-router";
+import { ref } from "vue";
 const store = useStore();
 const router = useRouter();
+const index = ref(
+  localStorage.getItem("menuIndex")
+    ? localStorage.getItem("menuIndex")
+    : "/layout"
+);
+const changeMenu = (value: string) => {
+  if (index.value === value) {
+  } else {
+    index.value = value;
+    localStorage.setItem("menuIndex", value);
+  }
+};
 </script>
 
 <style scoped></style>

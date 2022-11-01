@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     Blog: typeof import('./src/components/Blog.vue')['default']
     Card: typeof import('./src/components/Card.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCarousel: typeof import('element-plus/es')['ElCarousel']
