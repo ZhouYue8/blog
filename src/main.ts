@@ -13,6 +13,7 @@ import router from "./router";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import "./index.css";
 import "animate.css";
+import 'nprogress/nprogress.css'
 import { createPinia } from "pinia";
 const app = createApp(App);
 app.component("FontAwesomeIcon", FontAwesomeIcon);

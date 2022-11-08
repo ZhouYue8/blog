@@ -10,7 +10,13 @@
   <div class="w-full">
     <SwiperVue />
     <div class="mt-3">
-      <CardVue v-for="log in weblog" :key="log.id" :weblog="log" />
+      <CardVue
+        v-for="log in weblog"
+        :key="log.id"
+        :weblog="log"
+        class="cursor-pointer"
+        @click="toArticle(log.id)"
+      />
     </div>
   </div>
 </template>
@@ -20,16 +26,21 @@
 import SwiperVue from "../components/Swiper.vue";
 import CardVue from "../components/Card.vue";
 import useStore from "../store";
+import { useRouter } from "vue-router";
 type WEBLOG = {
-  content: string;
-  createData: string;
+  createDate: string;
   id: number;
   likes: number;
   title: string;
   updateDate: string;
+  type: string;
 };
+const router = useRouter();
 const store = useStore();
 const weblog: Array<WEBLOG> = await store.getBlog();
+const toArticle = (id: number) => {
+  router.push(`/article/${id}`);
+};
 </script>
 
 <!-- 样式设置 -->

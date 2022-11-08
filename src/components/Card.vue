@@ -7,29 +7,31 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%A
 -->
 <template>
-  <div
-    class="rounded-xl w-[80%] mx-auto dark:bg-gray-700 dark:text-gray-300 px-5 pt-3 pb-4 bg-blue-200 my-3"
-  >
-    <header class="font-bold text-lg flex justify-between">
-      <div class="line-clamp-1">{{ weblog.title }}</div>
-      <span class="hover:text-blue-500 transition-all cursor-pointer"
-        ><FontAwesomeIcon :icon="faThumbsUp"
-      /></span>
-    </header>
-    <div class="border-b-[1px] my-2 border-gray-500"></div>
-    <main>
-      <p class="line-clamp-3">
-        {{ weblog.content }}
+  <div class="cart">
+    <div class="icon rounded-full p-4">
+      <FontAwesomeIcon
+        :icon="faSchool"
+        class="text-red-600"
+        v-if="weblog.type === 'study'"
+      />
+      <FontAwesomeIcon class="text-blue-600" :icon="faCalendarDay" v-else />
+    </div>
+    <div class="font flex flex-1 flex-col items-center justify-center">
+      <h1 class="text-2xl font-bold leading-7 mb-3">{{ weblog.title }}</h1>
+      <p class="leading-7 text-sm text-gray-500">
+        {{ weblog.createDate }}
       </p>
-    </main>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faSchool, faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import dayjs from "dayjs";
+
 type WEBLOG = {
-  content: string;
-  createData: string;
+  createDate: string;
+  type: string;
   id: number;
   likes: number;
   title: string;
@@ -38,6 +40,8 @@ type WEBLOG = {
 const { weblog } = defineProps<{
   weblog: WEBLOG;
 }>();
+const str: number = dayjs(weblog.createDate).unix();
+weblog.createDate = dayjs(weblog.createDate).format("YYYY年MM月DD日");
 </script>
 
 <style scoped></style>

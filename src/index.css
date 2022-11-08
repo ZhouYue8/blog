@@ -16,4 +16,11 @@
   .header-switch {
     @apply z-10 dark:bg-gray-800 rounded-b-lg bg-blue-500 fixed shadow-md h-[60px] flex w-full justify-between items-center px-5;
   }
+  .cart {
+    @apply flex items-center justify-between 
+    rounded-lg w-[80%] mx-auto dark:bg-gray-700 
+    dark:text-gray-300 
+    px-6 py-6 pb-8 
+    bg-gray-50 my-6;
+  }
 }

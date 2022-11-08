@@ -9,17 +9,14 @@
   <div class="text-center max-w-72">
     <el-carousel height="300px" class="rounded-lg">
       <el-carousel-item v-for="item in data" :key="item.id">
-        <img
-          class="object-cover"
-          :src="`http://localhost:4000/static/${item.path}`"
-        />
+        <img class="object-cover" :src="`${BASE_URL}/static/${item.path}`" />
       </el-carousel-item>
     </el-carousel>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { getImges } from "../api";
+import { getImges, BASE_URL } from '../api';
 const { data } = await getImges();
 </script>
 

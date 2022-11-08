@@ -11,8 +11,8 @@
       <main>
         <h1>想要成为影之实力者这件事</h1>
         <div class="flex gap-3">
-          <img src="../assets/visual_b.jpg" class="w-1/2" />
           <img src="../assets/visual_w.jpg" class="w-1/2" />
+          <img src="../assets/visual_b.jpg" class="w-1/2" />
         </div>
       </main>
     </div>
