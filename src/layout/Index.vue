@@ -9,35 +9,37 @@
 <template>
   <div class="w-full">
     <SwiperVue />
-    <div class="mt-3">
+    <div class="mt-3" v-if="flag === true">
       <CardVue
-        v-for="log in weblog"
-        :key="log.id"
-        :weblog="log"
+        v-for="weblog in weblogs.data"
+        :key="weblog.id"
+        :weblog="weblog"
         class="cursor-pointer"
-        @click="toArticle(log.id)"
+        @click="toArticle(weblog.id)"
       />
     </div>
+    <el-empty v-else :image-size="200" />
   </div>
 </template>
 
 <!-- vue(Ts)代码 -->
 <script setup lang="ts">
-import SwiperVue from "../components/Swiper.vue";
-import CardVue from "../components/Card.vue";
-import useStore from "../store";
-import { useRouter } from "vue-router";
-type WEBLOG = {
-  createDate: string;
-  id: number;
-  likes: number;
-  title: string;
-  updateDate: string;
-  type: string;
-};
+import SwiperVue from '../components/swiper/Swiper.vue';
+import CardVue from '../components/Card.vue';
+import { useRouter } from 'vue-router';
+import { getWebLog } from '../api';
+import { WeblogData } from './types/weblogs.type';
+import { ref } from 'vue';
 const router = useRouter();
-const store = useStore();
-const weblog: Array<WEBLOG> = await store.getBlog();
+const flag = ref(false);
+let weblogs: WeblogData;
+try {
+  weblogs = await getWebLog();
+  flag.value = true;
+} catch (error) {
+  flag.value = false;
+}
+
 const toArticle = (id: number) => {
   router.push(`/article/${id}`);
 };

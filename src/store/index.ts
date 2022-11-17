@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getWebLog } from "../api";
+// import { getWebLog } from "../api";
 import { ref } from "vue";
 const useStore = defineStore("store", {
   state: () => ({
@@ -8,7 +8,7 @@ const useStore = defineStore("store", {
   }),
   actions: {
     async getBlog() {
-      return await getWebLog();
+      // return await getWebLog();
     },
   },
 });

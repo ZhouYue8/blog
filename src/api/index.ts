@@ -7,7 +7,7 @@
  */
 
 import axios, { type AxiosInstance } from 'axios';
-import NProgress from 'nprogress'
+import NProgress from 'nprogress';
 //全局进度条的配置
 NProgress.configure({
   easing: 'ease', // 动画方式
@@ -16,34 +16,31 @@ NProgress.configure({
   trickleSpeed: 200, // 自动递增间隔
   minimum: 0.3, // 更改启动时使用的最小百分比
   parent: 'body', //指定进度条的父容器
-})
-const BASE_URL = 'http://localhost:4000';
-interface RootObject {
-  id: number;
-  path: string;
-}
+});
+const BASE_URL = 'http://localhost:1337';
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: BASE_URL,
   timeout: 2000,
 });
 instance.interceptors.request.use((config) => {
-  NProgress.start()
+  NProgress.start();
   return config;
 });
 instance.interceptors.response.use((response) => {
-  NProgress.done()
+  NProgress.done();
   return response;
 });
 const getImges = async () => {
-  const { data } = await instance.get(`${BASE_URL}/swiper`);
+  const { data } = await instance.get(`${BASE_URL}/api/swipers`);
   return data;
 };
 const getWebLog = async () => {
-  const { data } = await instance.get(`${BASE_URL}/weblog`);
-  return data.data;
+  const { data: result } = await instance.get(`${BASE_URL}/api/weblogs`);
+  return result;
 };
 const weblogLikeClick = (id: number) => {
   instance.get(`${BASE_URL}/weblog/` + id);
 };
 
-export { getImges, getWebLog, weblogLikeClick, BASE_URL };
+// export { getImges, getWebLog, weblogLikeClick, BASE_URL };
+export { getImges,BASE_URL,getWebLog };
